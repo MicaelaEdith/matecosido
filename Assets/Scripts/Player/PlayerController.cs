@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int InCombatParameter = Animator.StringToHash("InCombat");
     private static readonly int AttackParameter = Animator.StringToHash("Attack");
 
+    private const float MoveInputThreshold = 0.0001f;
+
     [Header("Input")]
     [SerializeField] private InputActionAsset inputActions;
 
@@ -33,8 +35,7 @@ public class PlayerController : MonoBehaviour
     private InputAction moveAction;
     private InputAction sprintAction;
     private InputAction attackAction;
-    private InputAction previousWeaponAction;
-    private InputAction nextWeaponAction;
+    private InputAction switchWeaponAction;
 
     private bool isKnifeEquipped;
     private bool inCombat;
@@ -63,8 +64,7 @@ public class PlayerController : MonoBehaviour
                 moveAction = playerActionMap.FindAction("Move", false);
                 sprintAction = playerActionMap.FindAction("Sprint", false);
                 attackAction = playerActionMap.FindAction("Attack", false);
-                previousWeaponAction = playerActionMap.FindAction("Previous", false);
-                nextWeaponAction = playerActionMap.FindAction("Next", false);
+                switchWeaponAction = playerActionMap.FindAction("SwitchWeapon", false);
             }
         }
 
@@ -78,11 +78,8 @@ public class PlayerController : MonoBehaviour
         if (attackAction != null)
             attackAction.performed += OnAttackPerformed;
 
-        if (previousWeaponAction != null)
-            previousWeaponAction.performed += OnSwitchWeaponPerformed;
-
-        if (nextWeaponAction != null)
-            nextWeaponAction.performed += OnSwitchWeaponPerformed;
+        if (switchWeaponAction != null)
+            switchWeaponAction.performed += OnSwitchWeaponPerformed;
     }
 
     private void OnDisable()
@@ -90,11 +87,8 @@ public class PlayerController : MonoBehaviour
         if (attackAction != null)
             attackAction.performed -= OnAttackPerformed;
 
-        if (previousWeaponAction != null)
-            previousWeaponAction.performed -= OnSwitchWeaponPerformed;
-
-        if (nextWeaponAction != null)
-            nextWeaponAction.performed -= OnSwitchWeaponPerformed;
+        if (switchWeaponAction != null)
+            switchWeaponAction.performed -= OnSwitchWeaponPerformed;
 
         playerActionMap?.Disable();
     }
@@ -102,7 +96,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Vector2 moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
-        bool isMoving = moveInput.sqrMagnitude > 0.0001f;
+        bool isMoving = moveInput.sqrMagnitude > MoveInputThreshold;
         bool isRunning = isMoving && sprintAction != null && sprintAction.IsPressed();
 
         Move(moveInput, isMoving, isRunning);
@@ -150,11 +144,16 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerformed(InputAction.CallbackContext context)
     {
-        if (animator == null || Time.time < nextAttackTime)
+        if (animator == null || Time.time < nextAttackTime || HasMovementInput())
             return;
 
         nextAttackTime = Time.time + attackCooldown;
         animator.SetTrigger(AttackParameter);
+    }
+
+    private bool HasMovementInput()
+    {
+        return moveAction != null && moveAction.ReadValue<Vector2>().sqrMagnitude > MoveInputThreshold;
     }
 
     private void OnSwitchWeaponPerformed(InputAction.CallbackContext context)
