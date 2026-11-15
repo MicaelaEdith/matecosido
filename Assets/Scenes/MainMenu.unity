@@ -153,8 +153,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 359, y: -424}
-  m_SizeDelta: {x: 468.0582, y: 49.582}
+  m_AnchoredPosition: {x: 353, y: -320}
+  m_SizeDelta: {x: 485.9315, y: 90.3647}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &123436448
 MonoBehaviour:
@@ -176,12 +176,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Bandidos Rurales
-
-'
+  m_text: "El buen ladr\xF3n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -205,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
-  m_fontSizeBase: 48
+  m_fontSize: 68
+  m_fontSizeBase: 68
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1267,7 +1265,7 @@ RectTransform:
   m_GameObject: {fileID: 1615988824}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2903, y: 2.4638617, z: 2.2903}
+  m_LocalScale: {x: 2.0878832, y: 2.0776477, z: 2.0878832}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 308225431}
@@ -1275,8 +1273,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -342, y: -425}
-  m_SizeDelta: {x: 110.8319, y: 27.8542}
+  m_AnchoredPosition: {x: -388.2, y: -363.31418}
+  m_SizeDelta: {x: 110.8319, y: 30.279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1615988826
 MonoBehaviour:
@@ -1710,7 +1708,7 @@ RectTransform:
   m_GameObject: {fileID: 1801553493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2903, y: 2.2903, z: 2.2903}
+  m_LocalScale: {x: 2.0878832, y: 2.0878832, z: 2.0878832}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 461462966}
@@ -1718,7 +1716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -702, y: -334.65}
+  m_AnchoredPosition: {x: -703, y: -281}
   m_SizeDelta: {x: 168.1112, y: 30.279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1801553495
@@ -1843,7 +1841,7 @@ RectTransform:
   m_GameObject: {fileID: 1880729013}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.2903, y: 2.2903, z: 2.2903}
+  m_LocalScale: {x: 2.0878832, y: 2.0878832, z: 2.0878832}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 195914018}
@@ -1851,7 +1849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -702, y: -425}
+  m_AnchoredPosition: {x: -703, y: -363.37}
   m_SizeDelta: {x: 168.1112, y: 30.279}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1880729015

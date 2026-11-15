@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private bool inCombat;
     private bool isDead;
     private bool isTalking;
+    private bool isInDialogue;
     private float verticalVelocity;
     private float nextAttackTime;
 
@@ -56,6 +57,9 @@ public class PlayerController : MonoBehaviour
     public bool InCombat => inCombat;
     public bool IsDead => isDead;
     public bool IsTalking => isTalking;
+    public bool IsInDialogue => isInDialogue;
+    public bool IsMoving { get; private set; }
+    public bool IsRunning { get; private set; }
 
     private void Awake()
     {
@@ -138,11 +142,27 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (isDead)
+        {
+            IsMoving = false;
+            IsRunning = false;
             return;
+        }
+
+        if (isInDialogue)
+        {
+            IsMoving = false;
+            IsRunning = false;
+            Move(Vector2.zero, false, false);
+            UpdateAnimator(false, false);
+            return;
+        }
 
         Vector2 moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
         bool isMoving = moveInput.sqrMagnitude > MoveInputThreshold;
         bool isRunning = isMoving && sprintAction != null && sprintAction.IsPressed();
+
+        IsMoving = isMoving;
+        IsRunning = isRunning;
 
         Move(moveInput, isMoving, isRunning);
         UpdateAnimator(isMoving, isRunning);
@@ -189,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerformed(InputAction.CallbackContext context)
     {
-        if (animator == null || isDead || isTalking || Time.time < nextAttackTime || HasMovementInput())
+        if (animator == null || isDead || isTalking || isInDialogue || Time.time < nextAttackTime || HasMovementInput())
             return;
 
         nextAttackTime = Time.time + attackCooldown;
@@ -203,6 +223,9 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwitchWeaponPerformed(InputAction.CallbackContext context)
     {
+        if (isDead || isInDialogue)
+            return;
+
         ToggleWeapon();
     }
 
@@ -243,9 +266,30 @@ public class PlayerController : MonoBehaviour
         animator.SetBool(IsTalkingParameter, talking);
     }
 
+    public void SetDialogueActive(bool active)
+    {
+        isInDialogue = active;
+    }
+
+    public void FaceTowards(Vector3 worldPosition)
+    {
+        Vector3 direction = worldPosition - transform.position;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.0001f)
+            return;
+
+        transform.rotation = Quaternion.LookRotation(direction) * Quaternion.Euler(0f, modelYawOffset, 0f);
+    }
+
     private void HandlePlayerDied()
     {
         isDead = true;
+        IsMoving = false;
+        IsRunning = false;
+
+        if (isInDialogue && DialogueSystem.Instance != null)
+            DialogueSystem.Instance.CancelDialogue();
 
         if (animator != null)
             animator.SetBool(IsDeadParameter, true);
