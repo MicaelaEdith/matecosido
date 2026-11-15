@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,9 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsKnifeEquippedParameter = Animator.StringToHash("IsKnifeEquipped");
     private static readonly int InCombatParameter = Animator.StringToHash("InCombat");
     private static readonly int AttackParameter = Animator.StringToHash("Attack");
+    private static readonly int IsDeadParameter = Animator.StringToHash("IsDead");
+    private static readonly int IsTalkingParameter = Animator.StringToHash("IsTalking");
+    private static readonly int TalkingVariantParameter = Animator.StringToHash("TalkingVariant");
 
     private const float MoveInputThreshold = 0.0001f;
 
@@ -28,8 +32,12 @@ public class PlayerController : MonoBehaviour
     [Header("Weapon")]
     [SerializeField] private bool startWithKnife = false;
 
+    public event Action<bool> WeaponEquippedChanged;
+
     private CharacterController controller;
     private Animator animator;
+    private PlayerHealth playerHealth;
+    private GameManager gameManager;
 
     private InputActionMap playerActionMap;
     private InputAction moveAction;
@@ -39,15 +47,20 @@ public class PlayerController : MonoBehaviour
 
     private bool isKnifeEquipped;
     private bool inCombat;
+    private bool isDead;
+    private bool isTalking;
     private float verticalVelocity;
     private float nextAttackTime;
 
     public bool IsKnifeEquipped => isKnifeEquipped;
     public bool InCombat => inCombat;
+    public bool IsDead => isDead;
+    public bool IsTalking => isTalking;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        playerHealth = GetComponent<PlayerHealth>();
         animator = GetComponent<Animator>();
         if (animator == null)
             animator = GetComponentInChildren<Animator>();
@@ -69,6 +82,35 @@ public class PlayerController : MonoBehaviour
         }
 
         SetKnifeEquipped(startWithKnife);
+    }
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+
+        if (gameManager != null)
+        {
+            gameManager.CombatStateChanged += SetInCombat;
+            SetInCombat(gameManager.InCombat);
+        }
+
+        if (playerHealth != null)
+        {
+            playerHealth.Died += HandlePlayerDied;
+            playerHealth.Respawned += HandlePlayerRespawned;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (gameManager != null)
+            gameManager.CombatStateChanged -= SetInCombat;
+
+        if (playerHealth != null)
+        {
+            playerHealth.Died -= HandlePlayerDied;
+            playerHealth.Respawned -= HandlePlayerRespawned;
+        }
     }
 
     private void OnEnable()
@@ -95,6 +137,9 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (isDead)
+            return;
+
         Vector2 moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
         bool isMoving = moveInput.sqrMagnitude > MoveInputThreshold;
         bool isRunning = isMoving && sprintAction != null && sprintAction.IsPressed();
@@ -144,7 +189,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackPerformed(InputAction.CallbackContext context)
     {
-        if (animator == null || Time.time < nextAttackTime || HasMovementInput())
+        if (animator == null || isDead || isTalking || Time.time < nextAttackTime || HasMovementInput())
             return;
 
         nextAttackTime = Time.time + attackCooldown;
@@ -168,10 +213,15 @@ public class PlayerController : MonoBehaviour
 
     public void SetKnifeEquipped(bool equipped)
     {
+        if (isKnifeEquipped == equipped)
+            return;
+
         isKnifeEquipped = equipped;
 
         if (animator != null)
             animator.SetBool(IsKnifeEquippedParameter, isKnifeEquipped);
+
+        WeaponEquippedChanged?.Invoke(isKnifeEquipped);
     }
 
     public void SetInCombat(bool value)
@@ -180,6 +230,34 @@ public class PlayerController : MonoBehaviour
 
         if (animator != null)
             animator.SetBool(InCombatParameter, inCombat);
+    }
+
+    public void SetTalking(bool talking, int variant = 0)
+    {
+        isTalking = talking;
+
+        if (animator == null)
+            return;
+
+        animator.SetInteger(TalkingVariantParameter, variant);
+        animator.SetBool(IsTalkingParameter, talking);
+    }
+
+    private void HandlePlayerDied()
+    {
+        isDead = true;
+
+        if (animator != null)
+            animator.SetBool(IsDeadParameter, true);
+    }
+
+    private void HandlePlayerRespawned()
+    {
+        isDead = false;
+        verticalVelocity = 0f;
+
+        if (animator != null)
+            animator.SetBool(IsDeadParameter, false);
     }
 
     [ContextMenu("Toggle Weapon")]
@@ -192,5 +270,17 @@ public class PlayerController : MonoBehaviour
     private void ToggleInCombatFromContextMenu()
     {
         SetInCombat(!inCombat);
+    }
+
+    [ContextMenu("Toggle Talking 00")]
+    private void ToggleTalking00FromContextMenu()
+    {
+        SetTalking(!isTalking, 0);
+    }
+
+    [ContextMenu("Toggle Talking 01")]
+    private void ToggleTalking01FromContextMenu()
+    {
+        SetTalking(!isTalking, 1);
     }
 }
