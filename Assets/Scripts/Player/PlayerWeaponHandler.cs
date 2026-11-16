@@ -9,6 +9,9 @@ public class PlayerWeaponHandler : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerController playerController;
 
+    [Header("Settings")]
+    [SerializeField] private bool showPistolOnlyInCombat;
+
     private GameManager gameManager;
 
     private void Awake()
@@ -53,11 +56,12 @@ public class PlayerWeaponHandler : MonoBehaviour
     {
         bool knifeEquipped = playerController != null && playerController.IsKnifeEquipped;
         bool inCombat = gameManager != null && gameManager.InCombat;
+        bool showPistol = !knifeEquipped && (!showPistolOnlyInCombat || inCombat);
 
         if (knife != null)
             knife.SetActive(knifeEquipped);
 
         if (pistol != null)
-            pistol.SetActive(!knifeEquipped && inCombat);
+            pistol.SetActive(showPistol);
     }
 }

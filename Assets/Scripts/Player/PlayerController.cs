@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool startWithKnife = false;
 
     public event Action<bool> WeaponEquippedChanged;
+    public event Action<bool> AttackPerformed;
 
     private CharacterController controller;
     private Animator animator;
@@ -214,6 +215,7 @@ public class PlayerController : MonoBehaviour
 
         nextAttackTime = Time.time + attackCooldown;
         animator.SetTrigger(AttackParameter);
+        AttackPerformed?.Invoke(isKnifeEquipped);
     }
 
     private bool HasMovementInput()

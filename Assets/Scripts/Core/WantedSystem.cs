@@ -163,4 +163,15 @@ public class WantedSystem : MonoBehaviour
     {
         ClearSuspicion();
     }
+
+    public void AddSuspicionCapped(float amount, float maxValue)
+    {
+        if (amount <= 0f)
+            return;
+
+        if (suspicion >= maxValue)
+            return;
+
+        SetSuspicion(Mathf.Min(suspicion + amount, maxValue));
+    }
 }

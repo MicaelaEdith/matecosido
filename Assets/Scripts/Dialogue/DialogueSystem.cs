@@ -17,7 +17,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
 
     [Header("Names")]
-    [SerializeField] private string playerName = "Matecocido";
+    [SerializeField] private string playerName = "Matecosido";
 
     [Header("Timing")]
     [SerializeField] private float inputDelay = 0.15f;

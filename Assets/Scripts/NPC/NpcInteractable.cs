@@ -17,7 +17,26 @@ public class NpcInteractable : MonoBehaviour
     [SerializeField] private float npcYawOffset;
     [SerializeField] private bool hideMarkerAfterFirstDialogue = true;
 
+    [Header("Mission - Generic")]
+    [SerializeField] private bool startsMissionOnFirstDialogue;
+
+    [Header("Mission - NPC 1 (entrega en pueblo)")]
+    [SerializeField] private bool isVillageNpc;
+    [SerializeField] private DialogueData deliveryDialogue;
+    [SerializeField] private MissionState requiredStateForDelivery = MissionState.ReturnToNpc1;
+
+    [Header("Mission - NPC 2 (entrega en estación)")]
+    [SerializeField] private bool isStationNpc;
+    [SerializeField] private DialogueData finalDeliveryDialogue;
+    [SerializeField] private MissionState requiredStateForFinalDelivery = MissionState.DeliverToNpc2;
+    [SerializeField] private bool requireFinalBattleCleared = true;
+
+    [Header("Mission - Final Battle")]
+    [SerializeField] private bool startsFinalBattleOnDialogueEnd;
+
     private bool hasTalked;
+    private bool hasDeliveredToVillage;
+    private bool hasDeliveredToStation;
 
     public float InteractionRadius => interactionRadius;
     public bool HasTalked => hasTalked;
@@ -85,6 +104,21 @@ public class NpcInteractable : MonoBehaviour
 
     private DialogueData GetCurrentDialogue()
     {
+        MissionManager mission = MissionManager.Instance;
+
+        if (isVillageNpc && mission != null && !hasDeliveredToVillage &&
+            mission.CurrentState == requiredStateForDelivery && mission.HasMoney && deliveryDialogue != null)
+        {
+            return deliveryDialogue;
+        }
+
+        if (isStationNpc && mission != null && !hasDeliveredToStation && mission.HasMoney && finalDeliveryDialogue != null)
+        {
+            bool finalBattleReady = !requireFinalBattleCleared || mission.CurrentState >= requiredStateForFinalDelivery;
+            if (finalBattleReady)
+                return finalDeliveryDialogue;
+        }
+
         return hasTalked ? repeatDialogue : firstDialogue;
     }
 
@@ -93,12 +127,44 @@ public class NpcInteractable : MonoBehaviour
         if (npc != null)
             npc.ClearLookTarget();
 
-        if (hasTalked)
+        MissionManager mission = MissionManager.Instance;
+
+        if (isVillageNpc && mission != null && !hasDeliveredToVillage &&
+            mission.CurrentState == requiredStateForDelivery && mission.HasMoney)
+        {
+            hasDeliveredToVillage = true;
+            mission.DeliverMoneyToNpc1(MissionState.GoToStation);
+
+            if (hideMarkerAfterFirstDialogue && missionMarker != null)
+                missionMarker.SetVisible(false);
+
             return;
+        }
 
-        hasTalked = true;
+        if (isStationNpc && mission != null && !hasDeliveredToStation && mission.HasMoney &&
+            (!requireFinalBattleCleared || mission.CurrentState >= requiredStateForFinalDelivery))
+        {
+            hasDeliveredToStation = true;
+            mission.DeliverMoneyToNpc2(MissionState.Won);
 
-        if (hideMarkerAfterFirstDialogue && missionMarker != null)
-            missionMarker.SetVisible(false);
+            if (hideMarkerAfterFirstDialogue && missionMarker != null)
+                missionMarker.SetVisible(false);
+
+            return;
+        }
+
+        if (!hasTalked)
+        {
+            hasTalked = true;
+
+            if (hideMarkerAfterFirstDialogue && missionMarker != null)
+                missionMarker.SetVisible(false);
+
+            if (startsMissionOnFirstDialogue && mission != null)
+                mission.AdvanceTo(MissionState.GoToCompany);
+
+            if (startsFinalBattleOnDialogueEnd && mission != null)
+                mission.AdvanceTo(MissionState.FinalBattle);
+        }
     }
 }
