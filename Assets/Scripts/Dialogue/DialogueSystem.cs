@@ -2,6 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class DialogueSystem : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private GameObject continueIndicator;
+    [SerializeField] private Image speakerPortrait;
+
+    [Header("Portraits")]
+    [SerializeField] private Sprite playerPortrait;
 
     [Header("Input")]
     [SerializeField] private InputActionAsset inputActions;
@@ -158,8 +163,20 @@ public class DialogueSystem : MonoBehaviour
         if (continueIndicator != null)
             continueIndicator.SetActive(true);
 
+        UpdatePortrait(npcSpeaking);
+
         CurrentSpeaker = line.speaker;
         SpeakerChanged?.Invoke(CurrentSpeaker);
+    }
+
+    private void UpdatePortrait(bool npcSpeaking)
+    {
+        if (speakerPortrait == null)
+            return;
+
+        Sprite portrait = npcSpeaking ? currentDialogue.NpcPortrait : playerPortrait;
+        speakerPortrait.sprite = portrait;
+        speakerPortrait.enabled = portrait != null;
     }
 
     private void EndDialogue(bool completed)

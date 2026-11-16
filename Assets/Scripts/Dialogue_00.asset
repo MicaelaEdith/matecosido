@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue_00
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: Trabajador
+  npcPortrait: {fileID: 21300000, guid: e4a053cc659664922beebe8f24480c95, type: 3}
   lines:
   - speaker: 0
     text: "Mate Cosido, qu\xE9 suerte que te encuentro. Necesito pedirte un favor."
