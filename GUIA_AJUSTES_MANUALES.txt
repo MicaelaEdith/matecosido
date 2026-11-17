@@ -215,4 +215,51 @@ IMPORTANTE
 - EnemyProjectile/PlayerCombat: mejorar con capas específicas, impacto visual/sonido y pooling si hace falta.
 - No se modificó build/settings/escenas .unity desde código; todo lo anterior requiere configuración manual en Unity.
 
+==================================================
+12) AUDIO / SOUND MANAGER (2026-11-17)
+==================================================
+ESTADO: código listo y compilando; configuración manual pendiente (no realizada todavía).
+12.1 Carpetas:
+    - Música en Assets/Sound/Music (ya está menu.ogg; falta la música de juego).
+    - SFX en Assets/Sound/SFX (los 13 sonidos).
+
+12.2 SoundManager por escena:
+    - Level01: agregar el componente SoundManager al GO GameManager.
+      - Start Track = Game; Game Music = música de juego; Music Volume a gusto.
+    - MainMenu: agregar el componente SoundManager al GO MenuManager.
+      - Start Track = Menu; Menu Music = música de menú.
+    - El componente crea solos los AudioSource (música en loop y SFX 2D). No hace falta agregarlos a mano.
+    - Si un clip queda vacío, no suena nada (no rompe).
+
+12.3 Slots SFX a completar (mismos nombres que en el Inspector):
+    - Player: Player Shoot, Player Melee, Player Take Damage, Player Talk.
+    - Police: Police Shoot, Police Melee, Police Take Damage, Police Death.
+    - NPC: Npc Talk.
+    - Items: Money Pickup.
+    - Game Flow: Game Over, Victory.
+    - UI: Ui Click.
+
+12.4 Click de mouse:
+    - Agregar el componente UiClickSound al Canvas de MainMenu y al Canvas HUD de Level01.
+    - En Awake engancha todos los Button hijos y reproduce Ui Click.
+
+12.5 Volumen general:
+    - SoundManager.SetMasterVolume(0..1) aplica AudioListener.volume y lo guarda en PlayerPrefs ("Matecosido.MasterVolume").
+    - MasterVolume devuelve el valor actual. Falta el Slider del panel de opciones (Fase menú).
+
+12.6 Cuándo suena cada cosa (implementado en código):
+    - Disparo/facón del jugador: al ejecutar el ataque (PlayerCombat).
+    - Recibir daño del jugador: PlayerHealth.TakeDamage.
+    - Daño/muerte de policía: EnemyHealth (daño si sobrevive, muerte si es letal).
+    - Disparo/cachiporra policía: EnemyController.TryAttack según arma equipada.
+    - Dinero: al recolectar MoneyPickup.
+    - Murmullo: un one-shot por línea de diálogo según quién habla.
+    - Game Over: solo al quedarse sin vidas (GameManager). Corta la música.
+    - Victoria: al ganar la misión final. Corta la música.
+
+12.7 Prueba rápida:
+    - Con clips vacíos, jugar y verificar que no haya errores en consola.
+    - Asignar música y probar el cambio MainMenu -> Level01.
+    - Asignar un SFX de prueba (p.ej. Ui Click) y confirmar que suena.
+
 FIN DE GUIA

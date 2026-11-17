@@ -130,6 +130,12 @@ public class GameManager : MonoBehaviour
         if (gameOverPanel != null)
             gameOverPanel.SetActive(true);
 
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopMusic();
+            SoundManager.Instance.PlayGameOver();
+        }
+
         if (MissionManager.Instance != null)
             MissionManager.Instance.TriggerGameOver();
 
@@ -148,6 +154,12 @@ public class GameManager : MonoBehaviour
 
         if (victoryPanel != null)
             victoryPanel.SetActive(true);
+
+        if (SoundManager.Instance != null)
+        {
+            SoundManager.Instance.StopMusic();
+            SoundManager.Instance.PlayVictory();
+        }
 
         GameWon?.Invoke();
     }

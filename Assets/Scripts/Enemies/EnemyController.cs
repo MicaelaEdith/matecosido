@@ -226,6 +226,14 @@ public class EnemyController : MonoBehaviour
 
         bool useRanged = weaponHandler != null && !weaponHandler.CachiporraEquipped;
 
+        if (SoundManager.Instance != null)
+        {
+            if (useRanged)
+                SoundManager.Instance.PlayPoliceShoot();
+            else
+                SoundManager.Instance.PlayPoliceMelee();
+        }
+
         if (useRanged && projectilePrefab != null && muzzlePoint != null)
         {
             Vector3 direction = GetAimDirection();

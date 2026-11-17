@@ -47,9 +47,19 @@ public class PlayerCombat : MonoBehaviour
     private void HandleAttackPerformed(bool isKnifeAttack)
     {
         if (isKnifeAttack)
+        {
+            if (SoundManager.Instance != null)
+                SoundManager.Instance.PlayPlayerMelee();
+
             PerformMeleeAttack();
+        }
         else
+        {
+            if (SoundManager.Instance != null)
+                SoundManager.Instance.PlayPlayerShoot();
+
             PerformRangedAttack();
+        }
     }
 
     private void PerformMeleeAttack()

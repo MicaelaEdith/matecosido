@@ -165,6 +165,14 @@ public class DialogueSystem : MonoBehaviour
 
         UpdatePortrait(npcSpeaking);
 
+        if (SoundManager.Instance != null)
+        {
+            if (npcSpeaking)
+                SoundManager.Instance.PlayNpcTalk();
+            else
+                SoundManager.Instance.PlayPlayerTalk();
+        }
+
         CurrentSpeaker = line.speaker;
         SpeakerChanged?.Invoke(CurrentSpeaker);
     }

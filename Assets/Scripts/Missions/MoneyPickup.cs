@@ -40,6 +40,10 @@ public class MoneyPickup : MonoBehaviour
             return;
 
         collected = true;
+
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayMoneyPickup();
+
         MissionManager.Instance.CollectMoney(stateAfterPickup);
 
         if (pickupVisual != null)

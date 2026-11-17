@@ -23,7 +23,13 @@ public class EnemyHealth : MonoBehaviour
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
 
         if (CurrentHealth <= 0f)
+        {
             Die();
+            return;
+        }
+
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayPoliceTakeDamage();
     }
 
     public void Die()
@@ -32,6 +38,10 @@ public class EnemyHealth : MonoBehaviour
             return;
 
         IsDead = true;
+
+        if (SoundManager.Instance != null)
+            SoundManager.Instance.PlayPoliceDeath();
+
         Died?.Invoke();
     }
 
