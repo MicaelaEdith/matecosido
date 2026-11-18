@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class MainMenuController : MonoBehaviour
 {
     [Header("Scene")]
     [SerializeField] private string gameplaySceneName;
+    [SerializeField, Min(0f)] private float sceneLoadDelay = 0.12f;
 
     [Header("Panels")]
     [SerializeField] private GameObject settingsPanel;
@@ -23,7 +25,13 @@ public class MainMenuController : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(gameplaySceneName);
+        StartCoroutine(LoadSceneAfterDelay(gameplaySceneName));
+    }
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName)
+    {
+        yield return new WaitForSeconds(sceneLoadDelay);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void QuitGame()
