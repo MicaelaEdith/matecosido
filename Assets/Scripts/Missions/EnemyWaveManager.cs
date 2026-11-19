@@ -35,6 +35,9 @@ public class EnemyWaveManager : MonoBehaviour
     {
         if (companyArea != null)
             companyArea.PlayerInsideChanged += HandlePlayerInsideChanged;
+
+        if (startOnCompanyEnter && companyArea != null && companyArea.IsPlayerInside && !started)
+            StartWaves();
     }
 
     private void OnDisable()
@@ -97,10 +100,13 @@ public class EnemyWaveManager : MonoBehaviour
                 health.Died += HandleEnemyDied;
         }
 
-        WaveStarted?.Invoke(index);
-
         if (aliveCount == 0)
-            StartWave(index + 1);
+        {
+            Debug.LogError($"EnemyWaveManager: la ola '{wave.name}' no tiene enemigos válidos. No se avanzará la misión.", this);
+            return;
+        }
+
+        WaveStarted?.Invoke(index);
     }
 
     private void HandleEnemyDied()
