@@ -90,6 +90,9 @@ public class PlayerHealth : MonoBehaviour
         LivesChanged?.Invoke(CurrentLives, maxLives);
         HealthChanged?.Invoke(CurrentHealth, maxHealth);
         Respawned?.Invoke();
+
+        if (CurrentLives <= 0)
+            OutOfLives?.Invoke();
     }
 
     private void Die()

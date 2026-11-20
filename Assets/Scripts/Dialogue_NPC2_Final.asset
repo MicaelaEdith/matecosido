@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue_NPC2_Final
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   npcName: Recepcionista
-  npcPortrait: {fileID: 0}
+  npcPortrait: {fileID: 21300000, guid: f07edd6da1f5c9c7298b3df449a099aa, type: 3}
   lines:
   - speaker: 0
     text: Gracias, hiciste un buen trabajo. El dinero queda en buenas manos.
