@@ -30,6 +30,7 @@ public class NpcInteractable : MonoBehaviour
     [SerializeField] private DialogueData finalDeliveryDialogue;
     [SerializeField] private MissionState requiredStateForFinalDelivery = MissionState.DeliverToNpc2;
     [SerializeField] private bool requireFinalBattleCleared = true;
+    [SerializeField] private bool playThankfulOnFinalDelivery;
 
     [Header("Mission - Final Battle")]
     [SerializeField] private bool startsFinalBattleOnDialogueEnd;
@@ -146,6 +147,9 @@ public class NpcInteractable : MonoBehaviour
         {
             hasDeliveredToStation = true;
             mission.DeliverMoneyToNpc2(MissionState.Won);
+
+            if (playThankfulOnFinalDelivery && npc != null)
+                npc.SetThankful(true);
 
             if (hideMarkerAfterFirstDialogue && missionMarker != null)
                 missionMarker.SetVisible(false);

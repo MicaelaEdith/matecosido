@@ -8,6 +8,7 @@ public class EnemyProjectile : MonoBehaviour
     private float damage;
     private Vector3 direction;
     private GameObject owner;
+    private bool targetsPlayer;
     private float lifeTimer;
 
     public void Initialize(Vector3 shootDirection, float projectileDamage, GameObject projectileOwner)
@@ -15,6 +16,7 @@ public class EnemyProjectile : MonoBehaviour
         direction = shootDirection.normalized;
         damage = projectileDamage;
         owner = projectileOwner;
+        targetsPlayer = owner != null && owner.GetComponent<EnemyController>() != null;
         lifeTimer = 0f;
 
         if (direction.sqrMagnitude > 0.001f)
@@ -47,9 +49,18 @@ public class EnemyProjectile : MonoBehaviour
         if (owner != null && other.transform.IsChildOf(owner.transform))
             return;
 
-        PlayerHealth player = other.GetComponentInParent<PlayerHealth>();
-        if (player != null)
-            player.TakeDamage(damage);
+        if (targetsPlayer)
+        {
+            PlayerHealth player = other.GetComponentInParent<PlayerHealth>();
+            if (player != null)
+                player.TakeDamage(damage, direction, 2f);
+        }
+        else
+        {
+            EnemyHealth enemy = other.GetComponentInParent<EnemyHealth>();
+            if (enemy != null)
+                enemy.TakeDamage(damage, direction, 1.5f);
+        }
 
         Destroy(gameObject);
     }

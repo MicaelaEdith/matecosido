@@ -15,10 +15,17 @@ public class EnemyHealth : MonoBehaviour
         CurrentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 knockbackDirection = default, float knockbackForce = 0f)
     {
         if (IsDead || amount <= 0f)
             return;
+
+        if (knockbackForce > 0f)
+        {
+            EnemyController enemy = GetComponent<EnemyController>();
+            if (enemy != null)
+                enemy.ApplyKnockback(knockbackDirection, knockbackForce);
+        }
 
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
 

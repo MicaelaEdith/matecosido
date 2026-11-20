@@ -23,16 +23,28 @@ public class PlayerHealth : MonoBehaviour
     public bool IsDead { get; private set; }
     public bool CanRespawn => CurrentLives > 0;
 
+    private Vector3 startPosition;
+    private Quaternion startRotation;
+
     private void Awake()
     {
         CurrentHealth = maxHealth;
         CurrentLives = maxLives;
+        startPosition = transform.position;
+        startRotation = transform.rotation;
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Vector3 knockbackDirection = default, float knockbackForce = 0f)
     {
         if (IsDead || amount <= 0f)
             return;
+
+        if (knockbackForce > 0f)
+        {
+            PlayerController player = GetComponent<PlayerController>();
+            if (player != null)
+                player.ApplyKnockback(knockbackDirection, knockbackForce);
+        }
 
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
         HealthChanged?.Invoke(CurrentHealth, maxHealth);
@@ -94,8 +106,9 @@ public class PlayerHealth : MonoBehaviour
 
     private void TeleportToRespawnPoint()
     {
-        if (respawnPoint == null)
-            return;
+        bool useConfiguredPoint = HasUnscaledAncestors(respawnPoint);
+        Vector3 targetPosition = useConfiguredPoint ? respawnPoint.position : startPosition;
+        Quaternion targetRotation = useConfiguredPoint ? respawnPoint.rotation : startRotation;
 
         CharacterController controller = GetComponent<CharacterController>();
         bool controllerWasEnabled = controller != null && controller.enabled;
@@ -103,10 +116,21 @@ public class PlayerHealth : MonoBehaviour
         if (controllerWasEnabled)
             controller.enabled = false;
 
-        transform.SetPositionAndRotation(respawnPoint.position, respawnPoint.rotation);
+        transform.SetPositionAndRotation(targetPosition, targetRotation);
 
         if (controllerWasEnabled)
             controller.enabled = true;
+    }
+
+    private bool HasUnscaledAncestors(Transform point)
+    {
+        if (point == null)
+            return false;
+
+        Vector3 scale = point.lossyScale;
+        return Mathf.Abs(scale.x - 1f) < 0.15f
+            && Mathf.Abs(scale.y - 1f) < 0.15f
+            && Mathf.Abs(scale.z - 1f) < 0.15f;
     }
 
     [ContextMenu("Take 25 Damage")]

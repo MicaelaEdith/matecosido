@@ -11,6 +11,8 @@ public class SoundManager : MonoBehaviour
     }
 
     private const string MasterVolumeKey = "Matecosido.MasterVolume";
+    private const string MusicVolumeKey = "Matecosido.MusicVolume";
+    private const string SfxVolumeKey = "Matecosido.SfxVolume";
 
     public static SoundManager Instance { get; private set; }
 
@@ -58,6 +60,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip uiClick;
 
     public float MasterVolume => AudioListener.volume;
+    public float MusicVolume => musicVolume;
+    public float SfxVolume => sfxVolume;
     public MusicTrack StartTrack => startTrack;
 
     private Coroutine musicFadeRoutine;
@@ -72,6 +76,9 @@ public class SoundManager : MonoBehaviour
         }
 
         Instance = this;
+
+        musicVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(MusicVolumeKey, musicVolume));
+        sfxVolume = Mathf.Clamp01(PlayerPrefs.GetFloat(SfxVolumeKey, sfxVolume));
 
         if (musicSource == null)
             musicSource = gameObject.AddComponent<AudioSource>();
@@ -302,6 +309,24 @@ public class SoundManager : MonoBehaviour
     {
         ApplyMasterVolume(volume);
         PlayerPrefs.SetFloat(MasterVolumeKey, AudioListener.volume);
+        PlayerPrefs.Save();
+    }
+
+    public void SetMusicVolume(float volume)
+    {
+        musicVolume = Mathf.Clamp01(volume);
+
+        if (musicSource != null && musicFadeRoutine == null)
+            musicSource.volume = musicVolume;
+
+        PlayerPrefs.SetFloat(MusicVolumeKey, musicVolume);
+        PlayerPrefs.Save();
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        sfxVolume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(SfxVolumeKey, sfxVolume);
         PlayerPrefs.Save();
     }
 

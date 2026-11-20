@@ -4,6 +4,9 @@ public class NpcController : MonoBehaviour
 {
     private static readonly int IsSadParameter = Animator.StringToHash("IsSad");
     private static readonly int IsTalkingParameter = Animator.StringToHash("IsTalking");
+    private static readonly int IsWaitingParameter = Animator.StringToHash("IsWaiting");
+    private static readonly int IsRunningParameter = Animator.StringToHash("IsRunning");
+    private static readonly int IsThankfulParameter = Animator.StringToHash("IsThankful");
 
     [SerializeField] private Animator animator;
     [SerializeField] private bool startSad = true;
@@ -11,11 +14,17 @@ public class NpcController : MonoBehaviour
 
     private bool isSad;
     private bool isTalking;
+    private bool isWaiting;
+    private bool isRunning;
+    private bool isThankful;
     private Transform lookTarget;
     private float yawOffset;
 
     public bool IsSad => isSad;
     public bool IsTalking => isTalking;
+    public bool IsWaiting => isWaiting;
+    public bool IsRunning => isRunning;
+    public bool IsThankful => isThankful;
 
     private void Awake()
     {
@@ -60,6 +69,30 @@ public class NpcController : MonoBehaviour
 
         if (animator != null)
             animator.SetBool(IsTalkingParameter, isTalking);
+    }
+
+    public void SetWaiting(bool waiting)
+    {
+        isWaiting = waiting;
+
+        if (animator != null)
+            animator.SetBool(IsWaitingParameter, isWaiting);
+    }
+
+    public void SetRunning(bool running)
+    {
+        isRunning = running;
+
+        if (animator != null)
+            animator.SetBool(IsRunningParameter, isRunning);
+    }
+
+    public void SetThankful(bool thankful)
+    {
+        isThankful = thankful;
+
+        if (animator != null)
+            animator.SetBool(IsThankfulParameter, isThankful);
     }
 
     public void FaceTarget(Transform target, float yaw = 0f)

@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 0.6f;
 
+    [Header("Feedback")]
+    [SerializeField, Min(0f)] private float knockbackDecay = 12f;
+
     [Header("Weapon")]
     [SerializeField] private bool startWithKnife = false;
 
@@ -52,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private bool isTalking;
     private bool isInDialogue;
     private float verticalVelocity;
+    private Vector3 knockbackVelocity;
     private float nextAttackTime;
 
     public bool IsKnifeEquipped => isKnifeEquipped;
@@ -61,6 +65,7 @@ public class PlayerController : MonoBehaviour
     public bool IsInDialogue => isInDialogue;
     public bool IsMoving { get; private set; }
     public bool IsRunning { get; private set; }
+    public Vector3 AimPoint { get; private set; }
 
     private void Awake()
     {
@@ -87,6 +92,7 @@ public class PlayerController : MonoBehaviour
         }
 
         SetKnifeEquipped(startWithKnife);
+        AimPoint = transform.position + transform.forward * 10f;
     }
 
     private void Start()
@@ -193,8 +199,25 @@ public class PlayerController : MonoBehaviour
 
         verticalVelocity += gravity * Time.deltaTime;
 
-        Vector3 velocity = moveDirection * speed + Vector3.up * verticalVelocity;
+        Vector3 velocity = moveDirection * speed + knockbackVelocity + Vector3.up * verticalVelocity;
         controller.Move(velocity * Time.deltaTime);
+
+        if (knockbackVelocity.sqrMagnitude > 0.0001f)
+            knockbackVelocity = Vector3.MoveTowards(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
+    }
+
+    public void ApplyKnockback(Vector3 direction, float force)
+    {
+        if (isDead || force <= 0f)
+            return;
+
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.0001f)
+            return;
+
+        knockbackVelocity += direction.normalized * force;
+        verticalVelocity = Mathf.Max(verticalVelocity, 1f);
     }
 
     private void UpdateAnimator(bool isMoving, bool isRunning)
@@ -213,9 +236,48 @@ public class PlayerController : MonoBehaviour
         if (animator == null || isDead || isTalking || isInDialogue || Time.time < nextAttackTime || HasMovementInput())
             return;
 
+        AimAtPointer();
+
         nextAttackTime = Time.time + attackCooldown;
         animator.SetTrigger(AttackParameter);
         AttackPerformed?.Invoke(isKnifeEquipped);
+    }
+
+    private void AimAtPointer()
+    {
+        AimPoint = GetMouseAimPoint();
+
+        Vector3 aimDirection = AimPoint - transform.position;
+        aimDirection.y = 0f;
+
+        if (aimDirection.sqrMagnitude < 0.0001f)
+            return;
+
+        transform.rotation = Quaternion.LookRotation(aimDirection.normalized)
+            * Quaternion.Euler(0f, modelYawOffset, 0f);
+    }
+
+    private Vector3 GetMouseAimPoint()
+    {
+        Vector3 fallback = transform.position + transform.forward * 10f + Vector3.up;
+
+        if (Camera.main == null || Mouse.current == null)
+            return fallback;
+
+        Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+        if (Physics.Raycast(ray, out RaycastHit hit, 200f, ~0, QueryTriggerInteraction.Ignore))
+        {
+            EnemyHealth enemy = hit.collider.GetComponentInParent<EnemyHealth>();
+            return enemy != null ? enemy.transform.position + Vector3.up : hit.point;
+        }
+
+        Plane groundPlane = new Plane(Vector3.up, new Vector3(0f, transform.position.y + 1f, 0f));
+
+        if (groundPlane.Raycast(ray, out float enter))
+            return ray.GetPoint(enter);
+
+        return fallback;
     }
 
     private bool HasMovementInput()

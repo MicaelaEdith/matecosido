@@ -11,6 +11,13 @@ public class EnemyWave
     public float attackRange = 2f;
     public float damage = 10f;
     public float attackCooldown = 1.2f;
+
+    [Range(0f, 1f)]
+    [Tooltip("Fracción de la ola anterior que debe caer para que esta aparezca.")]
+    public float spawnAfterPreviousDefeatedFraction = 1f;
+
+    [Tooltip("Alterna cachiporra/disparo según el índice del enemigo en la ola.")]
+    public bool alternateMelee;
 }
 
 public class EnemyWaveManager : MonoBehaviour
@@ -29,7 +36,31 @@ public class EnemyWaveManager : MonoBehaviour
     public int CurrentWaveIndex { get; private set; } = -1;
     public bool AllCleared { get; private set; }
 
+    public void ConfigureWave(int index, string waveName, IEnumerable<EnemyController> enemies, bool melee,
+        float attackRange, float damage, float attackCooldown, float spawnAfterPreviousDefeatedFraction = 1f)
+    {
+        while (waves.Count <= index)
+            waves.Add(new EnemyWave());
+
+        EnemyWave wave = waves[index];
+        wave.name = waveName;
+        wave.enemies.Clear();
+        wave.enemies.AddRange(enemies);
+        wave.melee = melee;
+        wave.attackRange = attackRange;
+        wave.damage = damage;
+        wave.attackCooldown = attackCooldown;
+        wave.spawnAfterPreviousDefeatedFraction = Mathf.Clamp01(spawnAfterPreviousDefeatedFraction);
+    }
+
+    public void SetAlternateMelee(int index, bool alternate)
+    {
+        if (index >= 0 && index < waves.Count)
+            waves[index].alternateMelee = alternate;
+    }
+
     private readonly HashSet<EnemyHealth> subscribed = new HashSet<EnemyHealth>();
+    private readonly HashSet<int> startedWaves = new HashSet<int>();
     private bool started;
     private PlayerController cachedPlayer;
 
@@ -95,6 +126,7 @@ public class EnemyWaveManager : MonoBehaviour
             return;
 
         started = true;
+        startedWaves.Clear();
         StartWave(0);
     }
 
@@ -107,6 +139,7 @@ public class EnemyWaveManager : MonoBehaviour
         }
 
         CurrentWaveIndex = index;
+        startedWaves.Add(index);
         EnemyWave wave = waves[index];
 
         if (GameManager.Instance != null)
@@ -114,8 +147,10 @@ public class EnemyWaveManager : MonoBehaviour
 
         int aliveCount = 0;
 
-        foreach (EnemyController enemy in wave.enemies)
+        for (int enemyIndex = 0; enemyIndex < wave.enemies.Count; enemyIndex++)
         {
+            EnemyController enemy = wave.enemies[enemyIndex];
+
             if (enemy == null)
                 continue;
 
@@ -126,8 +161,10 @@ public class EnemyWaveManager : MonoBehaviour
 
             aliveCount++;
 
+            bool useMelee = wave.alternateMelee ? enemyIndex % 2 == 0 : wave.melee;
+
             enemy.SetCompanyArea(companyArea);
-            enemy.ConfigureAttack(wave.attackRange, wave.damage, wave.attackCooldown, wave.melee);
+            enemy.ConfigureAttack(wave.attackRange, wave.damage, wave.attackCooldown, useMelee);
             enemy.SetCombatEnabled(!requirePlayerInsideCompany || companyArea == null || companyArea.IsPlayerInside);
 
             if (subscribed.Add(health))
@@ -145,13 +182,52 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void HandleEnemyDied()
     {
-        if (AllCleared || CurrentWaveIndex < 0 || CurrentWaveIndex >= waves.Count)
+        if (AllCleared || !started || CurrentWaveIndex < 0 || CurrentWaveIndex >= waves.Count)
             return;
 
-        if (!IsWaveCleared(waves[CurrentWaveIndex]))
-            return;
+        for (int i = 0; i < waves.Count; i++)
+        {
+            if (startedWaves.Contains(i))
+                continue;
 
-        StartWave(CurrentWaveIndex + 1);
+            if (i > 0 && GetDefeatedFraction(waves[i - 1]) < waves[i].spawnAfterPreviousDefeatedFraction)
+                break;
+
+            StartWave(i);
+        }
+
+        if (startedWaves.Count == waves.Count && AllStartedWavesCleared())
+            CompleteAllWaves();
+    }
+
+    private float GetDefeatedFraction(EnemyWave wave)
+    {
+        int total = 0;
+        int defeated = 0;
+
+        foreach (EnemyController enemy in wave.enemies)
+        {
+            EnemyHealth health = enemy != null ? enemy.GetComponent<EnemyHealth>() : null;
+            if (health == null)
+                continue;
+
+            total++;
+            if (health.IsDead)
+                defeated++;
+        }
+
+        return total == 0 ? 0f : (float)defeated / total;
+    }
+
+    private bool AllStartedWavesCleared()
+    {
+        foreach (int index in startedWaves)
+        {
+            if (!IsWaveCleared(waves[index]))
+                return false;
+        }
+
+        return true;
     }
 
     private bool IsWaveCleared(EnemyWave wave)

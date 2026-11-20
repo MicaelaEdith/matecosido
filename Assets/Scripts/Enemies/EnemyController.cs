@@ -33,10 +33,15 @@ public class EnemyController : MonoBehaviour
     [Header("Area")]
     [SerializeField] private CompanyAreaController companyArea;
 
+    [Header("Feedback")]
+    [SerializeField, Min(0f)] private float knockbackForce = 2f;
+    [SerializeField, Min(0f)] private float knockbackDecay = 10f;
+
     private Transform target;
     private PlayerHealth targetHealth;
     private PlayerController targetController;
     private float nextAttackTime;
+    private Vector3 knockbackVelocity;
 
     public bool CombatEnabled => combatEnabled;
 
@@ -84,6 +89,8 @@ public class EnemyController : MonoBehaviour
         if (health != null && health.IsDead)
             return;
 
+        ApplyKnockbackStep();
+
         if (target == null)
             FindTarget();
 
@@ -114,6 +121,31 @@ public class EnemyController : MonoBehaviour
         FaceTarget();
         UpdateAnimator(false);
         TryAttack();
+    }
+
+    public void ApplyKnockback(Vector3 direction, float force)
+    {
+        direction.y = 0f;
+
+        if (force <= 0f || direction.sqrMagnitude < 0.0001f)
+            return;
+
+        knockbackVelocity += direction.normalized * force;
+    }
+
+    private void ApplyKnockbackStep()
+    {
+        if (knockbackVelocity.sqrMagnitude < 0.0001f)
+            return;
+
+        Vector3 step = knockbackVelocity * Time.deltaTime;
+
+        if (agent != null && agent.enabled && agent.isOnNavMesh)
+            agent.Move(step);
+        else
+            transform.position += step;
+
+        knockbackVelocity = Vector3.MoveTowards(knockbackVelocity, Vector3.zero, knockbackDecay * Time.deltaTime);
     }
 
     public void SetCombatEnabled(bool enabled)
@@ -243,7 +275,10 @@ public class EnemyController : MonoBehaviour
         }
 
         if (targetHealth != null)
-            targetHealth.TakeDamage(damage);
+        {
+            Vector3 pushDirection = target.position - transform.position;
+            targetHealth.TakeDamage(damage, pushDirection, knockbackForce);
+        }
     }
 
     private Vector3 GetAimDirection()
