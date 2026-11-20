@@ -707,8 +707,11 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   menuMusic: {fileID: 8300000, guid: f2d2abc454fbdb8f2a63bbca6edc3d20, type: 3}
   gameMusic: {fileID: 8300000, guid: 93f734c40f402369aabe992df548dec2, type: 3}
+  combatMusic: {fileID: 0}
   startTrack: 1
   musicVolume: 0.6
+  musicFadeOutDuration: 0.4
+  musicFadeInDuration: 0.8
   sfxSource: {fileID: 0}
   sfxVolume: 1
   playerShoot: {fileID: 0}
@@ -1152,6 +1155,7 @@ GameObject:
   - component: {fileID: 858387212}
   - component: {fileID: 858387211}
   - component: {fileID: 858387210}
+  - component: {fileID: 1999000002}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1159,6 +1163,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1999000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858387209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a142999caf5699eb38aa3aeec817e926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
 --- !u!114 &858387210
 MonoBehaviour:
   m_ObjectHideFlags: 0
