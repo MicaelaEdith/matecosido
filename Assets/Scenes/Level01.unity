@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 3812839}
   - component: {fileID: 3812838}
   - component: {fileID: 1999000001}
+  - component: {fileID: 1999000002}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -1499,6 +1500,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_22
@@ -1543,6 +1548,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -1558,6 +1567,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4968,8 +4981,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xBFEst\xE1 seguro que desea salir del juego?"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
-  m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7450,6 +7463,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_18
@@ -7494,21 +7511,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11769,6 +11794,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_15
@@ -11813,21 +11842,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12752,6 +12789,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_09
@@ -12796,6 +12837,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -12811,6 +12856,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17405,6 +17454,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_05
@@ -17449,21 +17502,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18021,11 +18082,11 @@ PrefabInstance:
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
@@ -18041,6 +18102,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 594201113}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &594201119 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 594201113}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &594281575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18442,6 +18514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_10
@@ -18486,6 +18562,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -18496,6 +18576,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -18891,6 +18975,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_12
@@ -18935,6 +19023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -18950,6 +19042,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19932,6 +20028,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_11
@@ -19976,6 +20076,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -19991,6 +20095,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20227,7 +20335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2409757851283085245, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20335,7 +20443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
@@ -20343,7 +20451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: startWithCachiporra
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -20357,6 +20465,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 693433172}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &693433178 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 693433172}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &694738946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21078,6 +21197,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 713024447}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &713024453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 713024447}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &714132116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21623,6 +21753,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 729213077}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &729213083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 729213077}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &729219955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21823,6 +21964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_06
@@ -21867,21 +22012,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21986,6 +22139,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ed20e3f677225e60867dcc11bae41cc, type: 3}
+--- !u!114 &744767831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 235220655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &745057022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23145,6 +23309,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: detectionRange
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 1
       objectReference: {fileID: 0}
@@ -23158,6 +23326,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 787124610}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &787124616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 787124610}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &790632754 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8272469205591024498, guid: c1d4d335bcf9ef3a4a08568b2ab8c7be, type: 3}
@@ -24888,6 +25067,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_03
@@ -24932,21 +25115,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25092,6 +25283,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_14
@@ -25136,21 +25331,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25162,6 +25365,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 850487003}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &850487009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 850487003}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &851199398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28092,6 +28306,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 952304012}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &952304018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 952304012}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &953063594 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ed20e3f677225e60867dcc11bae41cc, type: 3}
@@ -30022,6 +30247,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 66074808281988577, guid: a44c577b5c1d3c5209ca3bf8453915df, type: 3}
   m_PrefabInstance: {fileID: 1634145979}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1046445069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 911312800}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1 &1046906053
 GameObject:
   m_ObjectHideFlags: 0
@@ -30547,6 +30783,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_07
@@ -30591,6 +30831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -30606,6 +30850,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -33656,6 +33904,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ed20e3f677225e60867dcc11bae41cc, type: 3}
   m_PrefabInstance: {fileID: 683256184}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1158104495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 392539064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &1159712590 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4644898650036860732, guid: 402ce5ccb0f0c41fea289031da5065e9, type: 3}
@@ -33669,6 +33928,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_01
@@ -33713,21 +33976,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35079,7 +35350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2409757851283085245, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35187,7 +35458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 8
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
@@ -35195,7 +35466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: startWithCachiporra
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -36851,6 +37122,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_02
@@ -36895,21 +37170,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40170,6 +40453,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1398811686}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1398811692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1398811686}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &1401952220
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43970,6 +44264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_08
@@ -44014,6 +44312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -44029,6 +44331,10 @@ PrefabInstance:
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46271,11 +46577,33 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1585503769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1585503775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1585503769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &1585649470 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3ed20e3f677225e60867dcc11bae41cc, type: 3}
   m_PrefabInstance: {fileID: 247386423}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1586639612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1210947470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &1586977595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46895,6 +47223,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_16
@@ -46939,21 +47271,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: combatEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: detectionRange
-      value: 20
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46965,6 +47305,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1613330064}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1613330070 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1613330064}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1 &1614745009 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 91e03890375c918ffbda35791e83c3e0, type: 3}
@@ -49393,6 +49744,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1677887002}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1677887008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1677887002}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &1678003468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49997,6 +50359,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_04
@@ -50041,12 +50407,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
       objectReference: {fileID: 2038543731}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: detectionRange
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: requirePlayerInsideCompany
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -50059,6 +50437,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1699768931}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1699768937 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1699768931}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &1701602206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50689,27 +51078,60 @@ MonoBehaviour:
   waves:
   - name: Melee
     enemies:
+    - {fileID: 693433178}
     - {fileID: 1161073523}
     - {fileID: 1900000000000000010}
     - {fileID: 1900000000000000011}
+    - {fileID: 1699768937}
     - {fileID: 577941515}
     - {fileID: 736546758}
-    melee: 1
-    attackRange: 1.8
-    damage: 10
-    attackCooldown: 1.2
-  - name: Ranged
-    enemies:
     - {fileID: 1065485704}
     - {fileID: 1514311912}
     - {fileID: 393267191}
     - {fileID: 618217927}
     - {fileID: 683258757}
     - {fileID: 627905113}
+    - {fileID: 1586639612}
+    - {fileID: 850487009}
+    - {fileID: 2061578491}
+    melee: 1
+    attackRange: 1.8
+    damage: 10
+    attackCooldown: 1.2
+    spawnAfterPreviousDefeatedFraction: 1
+    alternateMelee: 0
+  - name: Mixed
+    enemies:
+    - {fileID: 1613330070}
+    - {fileID: 787124616}
+    - {fileID: 744767831}
+    - {fileID: 594201119}
+    - {fileID: 1844739894}
+    - {fileID: 952304018}
+    - {fileID: 1758968680}
+    - {fileID: 1918341381}
+    melee: 1
+    attackRange: 8
+    damage: 10
+    attackCooldown: 1.5
+    spawnAfterPreviousDefeatedFraction: 0.5
+    alternateMelee: 1
+  - name: Ranged
+    enemies:
+    - {fileID: 713024453}
+    - {fileID: 1046445069}
+    - {fileID: 1677887008}
+    - {fileID: 1585503775}
+    - {fileID: 729213083}
+    - {fileID: 1398811692}
+    - {fileID: 1158104495}
+    - {fileID: 2087777371}
     melee: 0
     attackRange: 8
     damage: 10
     attackCooldown: 1.5
+    spawnAfterPreviousDefeatedFraction: 1
+    alternateMelee: 0
   companyArea: {fileID: 2038543731}
   requirePlayerInsideCompany: 0
   startOnCompanyEnter: 1
@@ -52247,6 +52669,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757937785}
   m_CullTransparentMesh: 1
+--- !u!114 &1758968680 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 43379449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1 &1759894792
 GameObject:
   m_ObjectHideFlags: 0
@@ -52329,19 +52762,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1759894795}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: CloseSettings
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1759894795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54998,6 +55419,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 252716546}
     m_Modifications:
+    - target: {fileID: 1136075090564375722, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2556119973914617317, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: m_Name
       value: Police_20
@@ -55042,6 +55467,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3043023031348727047, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
       propertyPath: companyArea
       value: 
@@ -55058,6 +55487,10 @@ PrefabInstance:
       propertyPath: requirePlayerInsideCompany
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8690017859974917894, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+      propertyPath: startWithCachiporra
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -55068,6 +55501,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1844739888}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1844739894 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1844739888}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &1845805933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55709,7 +56153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e610944f4091cf96b9d5226a470023fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -78.8
+      value: -57.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e610944f4091cf96b9d5226a470023fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -56116,6 +56560,7 @@ MonoBehaviour:
   rangedDamage: 20
   rangedRange: 30
   rangedKnockback: 1.5
+  shootDelay: 0.35
   hitMask:
     serializedVersion: 2
     m_Bits: 128
@@ -57836,6 +58281,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2896651556424679263, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
   m_PrefabInstance: {fileID: 1918341375}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1918341381 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1918341375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &1918748514 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6382178376781599672, guid: 0ac382714b6bd9c5ba8156bb9f399af8, type: 3}
@@ -60203,6 +60659,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a142999caf5699eb38aa3aeec817e926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UiClickSound
+--- !u!114 &1999000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3812837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 742a7834cc9ad8bdf88935212c6f91ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuController
+  pausePanel: {fileID: 1232697646}
+  hudObjects:
+  - {fileID: 1848224905}
+  - {fileID: 45211416}
+  - {fileID: 493903995}
+  - {fileID: 708370338}
+  - {fileID: 46061419}
+  quitAlert: {fileID: 1165957951}
+  pauseButton: {fileID: 46061421}
+  closeButton: {fileID: 1759894794}
+  quitButton: {fileID: 1662335786}
+  yesButton: {fileID: 477763804}
+  noButton: {fileID: 959050520}
+  musicSlider: {fileID: 1117545520}
+  sfxSlider: {fileID: 1378754125}
 --- !u!1001 &1999006419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61743,6 +62226,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &2050473870
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -83.15856
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.349
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.009632
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.25111747
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.96795666
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 150.913
+      objectReference: {fileID: 0}
+    - target: {fileID: 3614689396989738200, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5746904917699664173, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
+      propertyPath: m_Name
+      value: NPC2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f9f35aa06264c71b4a918522e32a5b9a, type: 3}
 --- !u!1001 &2050743791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62107,6 +62647,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ac382714b6bd9c5ba8156bb9f399af8, type: 3}
+--- !u!114 &2061578491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 359023246}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &2062830486
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62562,6 +63113,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4644898650036860732, guid: 402ce5ccb0f0c41fea289031da5065e9, type: 3}
   m_PrefabInstance: {fileID: 1312322942}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087777371 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6885083115403713151, guid: 7ebaf35fd77a7e03eae015ddf8106a2b, type: 3}
+  m_PrefabInstance: {fileID: 1552232642}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 378a132cc1899067dae046b8b11f5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1001 &2088707370
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64500,3 +65062,4 @@ SceneRoots:
   - {fileID: 880293452}
   - {fileID: 1736305872163504868}
   - {fileID: 910878773}
+  - {fileID: 2050473870}

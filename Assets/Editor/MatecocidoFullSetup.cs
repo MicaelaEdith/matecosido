@@ -215,10 +215,10 @@ public static class MatecocidoFullSetup
         controller.AddParameter("IsThankful", AnimatorControllerParameterType.Bool);
 
         AnimatorStateMachine machine = controller.layers[0].stateMachine;
-        AnimatorState idle = machine.AddState("Idle", LoadClip("Assets/Animations/npc2_idle.fbx", "idle"));
-        AnimatorState espera = machine.AddState("Espera", LoadClip("Assets/Animations/npc2_espera.fbx", "espera"));
-        AnimatorState corre = machine.AddState("Corre", LoadClip("Assets/Animations/npc2_corre.fbx", "corre"));
-        AnimatorState thankful = machine.AddState("Thankful", LoadClip("Assets/Animations/npc2_Thankful.fbx", "thankful"));
+        AnimatorState idle = AddState(machine, "Idle", "Assets/Animations/npc2_idle.fbx", "idle");
+        AnimatorState espera = AddState(machine, "Espera", "Assets/Animations/npc2_espera.fbx", "espera");
+        AnimatorState corre = AddState(machine, "Corre", "Assets/Animations/npc2_corre.fbx", "corre");
+        AnimatorState thankful = AddState(machine, "Thankful", "Assets/Animations/npc2_Thankful.fbx", "thankful");
 
         machine.defaultState = idle;
 
@@ -247,6 +247,16 @@ public static class MatecocidoFullSetup
 
         foreach (string parameter in parameters)
             transition.AddCondition(mode, 0f, parameter);
+    }
+
+    private static AnimatorState AddState(AnimatorStateMachine machine, string name, string path, string token)
+    {
+        AnimatorState state = machine.AddState(name);
+        AnimationClip clip = LoadClip(path, token);
+        if (clip != null)
+            state.motion = clip;
+
+        return state;
     }
 
     private static AnimationClip LoadClip(string path, string token)

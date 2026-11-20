@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353d2a4e12c666d01be38d374ae56469, type: 3}
+  m_Name: Dialogue_NPC2_Repeat
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  npcName: Recepcionista
+  npcPortrait: {fileID: 0}
+  lines:
+  - speaker: 0
+    text: "Todav\xEDa no tengo el dinero. Vuelve cuando lo tengas."
+    playerTalkingVariant: 0
+  npcStopsBeingSad: 0
