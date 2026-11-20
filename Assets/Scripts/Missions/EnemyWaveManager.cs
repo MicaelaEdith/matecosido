@@ -22,6 +22,7 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField] private CompanyAreaController companyArea;
     [SerializeField] private bool requirePlayerInsideCompany = true;
     [SerializeField] private bool startOnCompanyEnter = true;
+    [SerializeField] private float autoStartDistance = 18f;
     [SerializeField] private bool advanceMissionOnClear = true;
     [SerializeField] private MissionState missionStateOnClear = MissionState.CollectMoney;
 
@@ -30,6 +31,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private readonly HashSet<EnemyHealth> subscribed = new HashSet<EnemyHealth>();
     private bool started;
+    private PlayerController cachedPlayer;
 
     private void OnEnable()
     {
@@ -46,6 +48,38 @@ public class EnemyWaveManager : MonoBehaviour
             companyArea.PlayerInsideChanged -= HandlePlayerInsideChanged;
 
         UnsubscribeAll();
+    }
+
+    private void Update()
+    {
+        if (started || AllCleared || !startOnCompanyEnter)
+            return;
+
+        if (IsPlayerNearEnemy())
+            StartWaves();
+    }
+
+    private bool IsPlayerNearEnemy()
+    {
+        if (cachedPlayer == null)
+            cachedPlayer = FindObjectOfType<PlayerController>();
+
+        if (cachedPlayer == null)
+            return false;
+
+        foreach (EnemyWave wave in waves)
+        {
+            foreach (EnemyController enemy in wave.enemies)
+            {
+                if (enemy == null)
+                    continue;
+
+                if (Vector3.Distance(cachedPlayer.transform.position, enemy.transform.position) <= autoStartDistance)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     private void HandlePlayerInsideChanged(bool inside)
