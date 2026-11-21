@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack")]
     [SerializeField] private float attackCooldown = 0.6f;
+    [SerializeField] private float meleeMovementLock = 0.45f;
 
     [Header("Feedback")]
     [SerializeField, Min(0f)] private float knockbackDecay = 12f;
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private Vector3 knockbackVelocity;
     private float nextAttackTime;
+    private float movementLockUntil;
 
     public bool IsKnifeEquipped => isKnifeEquipped;
     public bool InCombat => inCombat;
@@ -164,8 +166,9 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        Vector2 moveInput = moveAction != null ? moveAction.ReadValue<Vector2>() : Vector2.zero;
-        bool isMoving = moveInput.sqrMagnitude > MoveInputThreshold;
+        bool movementLocked = Time.time < movementLockUntil;
+        Vector2 moveInput = (!movementLocked && moveAction != null) ? moveAction.ReadValue<Vector2>() : Vector2.zero;
+        bool isMoving = !movementLocked && moveInput.sqrMagnitude > MoveInputThreshold;
         bool isRunning = isMoving && sprintAction != null && sprintAction.IsPressed();
 
         IsMoving = isMoving;
@@ -237,6 +240,9 @@ public class PlayerController : MonoBehaviour
             return;
 
         AimAtPointer();
+
+        if (isKnifeEquipped)
+            movementLockUntil = Time.time + meleeMovementLock;
 
         nextAttackTime = Time.time + attackCooldown;
         animator.SetTrigger(AttackParameter);
@@ -351,6 +357,7 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         IsMoving = false;
         IsRunning = false;
+        movementLockUntil = 0f;
 
         if (isInDialogue && DialogueSystem.Instance != null)
             DialogueSystem.Instance.CancelDialogue();
@@ -363,6 +370,7 @@ public class PlayerController : MonoBehaviour
     {
         isDead = false;
         verticalVelocity = 0f;
+        movementLockUntil = 0f;
 
         if (animator != null)
             animator.SetBool(IsDeadParameter, false);

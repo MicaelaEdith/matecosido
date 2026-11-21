@@ -18,7 +18,7 @@ public class PlayerHealth : MonoBehaviour
 
     public float CurrentHealth { get; private set; }
     public float MaxHealth => maxHealth;
-    public int CurrentLives { get; private set; }
+    public int CurrentLives { get; private set; } = 5;
     public int MaxLives => maxLives;
     public bool IsDead { get; private set; }
     public bool CanRespawn => CurrentLives > 0;

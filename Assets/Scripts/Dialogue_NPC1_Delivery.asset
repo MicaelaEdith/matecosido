@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 353d2a4e12c666d01be38d374ae56469, type: 3}
+  m_Name: Dialogue_NPC1_Delivery
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  npcName: Trabajador
+  npcPortrait: {fileID: 21300000, guid: e4a053cc659664922beebe8f24480c95, type: 3}
+  lines:
+  - speaker: 1
+    text: "Ac\xE1 est\xE1 la plata, consegu\xED recuperarla."
+    playerTalkingVariant: 0
+  - speaker: 0
+    text: "\xA1Gracias, Mate Cosido! Me voy a quedar con la mitad para repartir entre los trabajadores del pueblo."
+    playerTalkingVariant: 0
+  - speaker: 0
+    text: "La otra mitad ten\xE9s que llev\xE1rsela a un compa\xF1ero que te espera en la estaci\xF3n; viene del pueblo vecino a buscar el pago del resto."
+    playerTalkingVariant: 0
+  npcStopsBeingSad: 0

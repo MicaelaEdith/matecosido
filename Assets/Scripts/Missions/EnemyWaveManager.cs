@@ -33,6 +33,12 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField] private bool advanceMissionOnClear = true;
     [SerializeField] private MissionState missionStateOnClear = MissionState.CollectMoney;
 
+    [Header("First Assault Completion")]
+    [SerializeField] private bool completeOnPolice01To12Cleared = true;
+    [SerializeField] private string firstAssaultNamePrefix = "Police_";
+    [SerializeField] private int firstAssaultMinIndex = 1;
+    [SerializeField] private int firstAssaultMaxIndex = 12;
+
     public int CurrentWaveIndex { get; private set; } = -1;
     public bool AllCleared { get; private set; }
 
@@ -59,13 +65,33 @@ public class EnemyWaveManager : MonoBehaviour
             waves[index].alternateMelee = alternate;
     }
 
+    public void DeactivateWave(int index)
+    {
+        if (index < 0 || index >= waves.Count)
+            return;
+
+        foreach (EnemyController enemy in waves[index].enemies)
+        {
+            if (enemy != null)
+                enemy.gameObject.SetActive(false);
+        }
+    }
+
     private readonly HashSet<EnemyHealth> subscribed = new HashSet<EnemyHealth>();
     private readonly HashSet<int> startedWaves = new HashSet<int>();
+    private readonly List<EnemyHealth> firstAssaultGroup = new List<EnemyHealth>();
     private bool started;
     private PlayerController cachedPlayer;
 
+    private void Awake()
+    {
+        CacheFirstAssaultGroup();
+    }
+
     private void OnEnable()
     {
+        CacheFirstAssaultGroup();
+
         if (companyArea != null)
             companyArea.PlayerInsideChanged += HandlePlayerInsideChanged;
 
@@ -127,7 +153,11 @@ public class EnemyWaveManager : MonoBehaviour
 
         started = true;
         startedWaves.Clear();
+        SubscribeFirstAssaultGroup();
         StartWave(0);
+
+        if (ArePolice01To12Cleared())
+            CompleteAllWaves();
     }
 
     private void StartWave(int index)
@@ -182,10 +212,25 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void HandleEnemyDied()
     {
-        if (AllCleared || !started || CurrentWaveIndex < 0 || CurrentWaveIndex >= waves.Count)
+        if (AllCleared || !started)
             return;
 
-        for (int i = 0; i < waves.Count; i++)
+        if (ArePolice01To12Cleared())
+        {
+            CompleteAllWaves();
+            return;
+        }
+
+        if (startedWaves.Contains(0) && IsWaveCleared(waves[0]))
+        {
+            CompleteAllWaves();
+            return;
+        }
+
+        if (CurrentWaveIndex < 0 || CurrentWaveIndex >= waves.Count)
+            return;
+
+        for (int i = 1; i < waves.Count; i++)
         {
             if (startedWaves.Contains(i))
                 continue;
@@ -195,9 +240,6 @@ public class EnemyWaveManager : MonoBehaviour
 
             StartWave(i);
         }
-
-        if (startedWaves.Count == waves.Count && AllStartedWavesCleared())
-            CompleteAllWaves();
     }
 
     private float GetDefeatedFraction(EnemyWave wave)
@@ -261,6 +303,81 @@ public class EnemyWaveManager : MonoBehaviour
             MissionManager.Instance.AdvanceTo(missionStateOnClear);
 
         AllWavesCleared?.Invoke();
+    }
+
+    private void CacheFirstAssaultGroup()
+    {
+        firstAssaultGroup.Clear();
+
+        if (!completeOnPolice01To12Cleared)
+            return;
+
+        EnemyController[] controllers = FindObjectsByType<EnemyController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        for (int i = 0; i < controllers.Length; i++)
+        {
+            EnemyController controller = controllers[i];
+            if (controller == null || !IsInFirstAssaultGroup(controller.gameObject.name))
+                continue;
+
+            EnemyHealth health = controller.GetComponent<EnemyHealth>();
+            if (health != null && !firstAssaultGroup.Contains(health))
+                firstAssaultGroup.Add(health);
+        }
+    }
+
+    private bool IsInFirstAssaultGroup(string objectName)
+    {
+        if (string.IsNullOrEmpty(objectName) || string.IsNullOrEmpty(firstAssaultNamePrefix))
+            return false;
+
+        if (!objectName.StartsWith(firstAssaultNamePrefix, StringComparison.Ordinal))
+            return false;
+
+        string suffix = objectName.Substring(firstAssaultNamePrefix.Length);
+        if (!int.TryParse(suffix, out int index))
+            return false;
+
+        return index >= firstAssaultMinIndex && index <= firstAssaultMaxIndex;
+    }
+
+    private void SubscribeFirstAssaultGroup()
+    {
+        if (!completeOnPolice01To12Cleared)
+            return;
+
+        if (firstAssaultGroup.Count == 0)
+            CacheFirstAssaultGroup();
+
+        for (int i = 0; i < firstAssaultGroup.Count; i++)
+        {
+            EnemyHealth health = firstAssaultGroup[i];
+            if (health != null && subscribed.Add(health))
+                health.Died += HandleEnemyDied;
+        }
+    }
+
+    private bool ArePolice01To12Cleared()
+    {
+        if (!completeOnPolice01To12Cleared)
+            return false;
+
+        if (firstAssaultGroup.Count == 0)
+            CacheFirstAssaultGroup();
+
+        if (firstAssaultGroup.Count == 0)
+            return false;
+
+        for (int i = 0; i < firstAssaultGroup.Count; i++)
+        {
+            EnemyHealth health = firstAssaultGroup[i];
+            if (health == null)
+                continue;
+
+            if (!health.IsDead)
+                return false;
+        }
+
+        return true;
     }
 
     private void UnsubscribeAll()

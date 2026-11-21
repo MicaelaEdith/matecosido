@@ -23,6 +23,7 @@ public class NpcInteractable : MonoBehaviour
     [Header("Mission - NPC 1 (entrega en pueblo)")]
     [SerializeField] private bool isVillageNpc;
     [SerializeField] private DialogueData deliveryDialogue;
+    [SerializeField] private DialogueData afterDeliveryDialogue;
     [SerializeField] private MissionState requiredStateForDelivery = MissionState.ReturnToNpc1;
 
     [Header("Mission - NPC 2 (entrega en estación)")]
@@ -73,6 +74,11 @@ public class NpcInteractable : MonoBehaviour
 
     private void Start()
     {
+        if (MissionManager.Instance != null)
+            MissionManager.Instance.StateChanged += HandleMissionStateChanged;
+
+        RefreshMarker();
+
         if (DialogueSystem.Instance == null)
             Debug.LogWarning("NpcInteractable: no hay un DialogueSystem en la escena.");
     }
@@ -86,6 +92,14 @@ public class NpcInteractable : MonoBehaviour
     private void OnDisable()
     {
         Active.Remove(this);
+
+        if (MissionManager.Instance != null)
+            MissionManager.Instance.StateChanged -= HandleMissionStateChanged;
+    }
+
+    private void HandleMissionStateChanged(MissionState previous, MissionState current)
+    {
+        RefreshMarker();
     }
 
     public void Interact(PlayerController player)
@@ -107,10 +121,16 @@ public class NpcInteractable : MonoBehaviour
     {
         MissionManager mission = MissionManager.Instance;
 
-        if (isVillageNpc && mission != null && !hasDeliveredToVillage &&
-            mission.CurrentState == requiredStateForDelivery && mission.HasMoney && deliveryDialogue != null)
+        if (isVillageNpc && mission != null)
         {
-            return deliveryDialogue;
+            if (!hasDeliveredToVillage &&
+                mission.CurrentState == requiredStateForDelivery && mission.HasMoney && deliveryDialogue != null)
+            {
+                return deliveryDialogue;
+            }
+
+            if (hasDeliveredToVillage)
+                return afterDeliveryDialogue;
         }
 
         if (isStationNpc && mission != null && !hasDeliveredToStation && mission.HasMoney && finalDeliveryDialogue != null)
@@ -136,9 +156,7 @@ public class NpcInteractable : MonoBehaviour
             hasDeliveredToVillage = true;
             mission.DeliverMoneyToNpc1(MissionState.GoToStation);
 
-            if (hideMarkerAfterFirstDialogue && missionMarker != null)
-                missionMarker.SetVisible(false);
-
+            RefreshMarker();
             return;
         }
 
@@ -154,6 +172,7 @@ public class NpcInteractable : MonoBehaviour
             if (hideMarkerAfterFirstDialogue && missionMarker != null)
                 missionMarker.SetVisible(false);
 
+            RefreshMarker();
             return;
         }
 
@@ -170,5 +189,35 @@ public class NpcInteractable : MonoBehaviour
             if (startsFinalBattleOnDialogueEnd && mission != null)
                 mission.AdvanceTo(MissionState.FinalBattle);
         }
+
+        RefreshMarker();
+    }
+
+    private void RefreshMarker()
+    {
+        if (missionMarker == null || !isVillageNpc)
+            return;
+
+        MissionManager mission = MissionManager.Instance;
+
+        if (hasDeliveredToVillage)
+        {
+            missionMarker.SetVisible(false);
+            return;
+        }
+
+        if (mission != null && mission.CurrentState == requiredStateForDelivery && mission.HasMoney)
+        {
+            missionMarker.SetVisible(true);
+            return;
+        }
+
+        if (hasTalked && hideMarkerAfterFirstDialogue)
+        {
+            missionMarker.SetVisible(false);
+            return;
+        }
+
+        missionMarker.SetVisible(true);
     }
 }

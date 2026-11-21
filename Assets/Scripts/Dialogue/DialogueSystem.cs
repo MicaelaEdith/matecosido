@@ -22,7 +22,7 @@ public class DialogueSystem : MonoBehaviour
     [SerializeField] private InputActionAsset inputActions;
 
     [Header("Names")]
-    [SerializeField] private string playerName = "Matecosido";
+    [SerializeField] private string playerName = "Mate Cosido";
 
     [Header("Timing")]
     [SerializeField] private float inputDelay = 0.15f;
@@ -75,22 +75,48 @@ public class DialogueSystem : MonoBehaviour
 
     private void OnEnable()
     {
-        if (interactAction != null)
-            interactAction.performed += OnAdvancePerformed;
-
         SetPanelVisible(false);
     }
 
     private void OnDisable()
     {
-        if (interactAction != null)
-            interactAction.performed -= OnAdvancePerformed;
     }
 
     private void OnDestroy()
     {
         if (Instance == this)
             Instance = null;
+    }
+
+    private void Update()
+    {
+        if (!IsDialogueActive || Time.unscaledTime < nextInputTime)
+            return;
+
+        if (WasAdvancePressed())
+            Advance();
+    }
+
+    private bool WasAdvancePressed()
+    {
+        if (Keyboard.current != null && Keyboard.current.anyKey.wasPressedThisFrame)
+            return true;
+
+        if (Mouse.current != null &&
+            (Mouse.current.leftButton.wasPressedThisFrame ||
+             Mouse.current.rightButton.wasPressedThisFrame ||
+             Mouse.current.middleButton.wasPressedThisFrame))
+            return true;
+
+        if (Gamepad.current != null &&
+            (Gamepad.current.buttonSouth.wasPressedThisFrame ||
+             Gamepad.current.buttonEast.wasPressedThisFrame ||
+             Gamepad.current.buttonWest.wasPressedThisFrame ||
+             Gamepad.current.buttonNorth.wasPressedThisFrame ||
+             Gamepad.current.startButton.wasPressedThisFrame))
+            return true;
+
+        return false;
     }
 
     public void StartDialogue(DialogueData dialogue, NpcController npc, PlayerController player, Action onComplete = null)
@@ -115,13 +141,7 @@ public class DialogueSystem : MonoBehaviour
         DialogueStarted?.Invoke(dialogue);
     }
 
-    private void OnAdvancePerformed(InputAction.CallbackContext context)
-    {
-        if (!IsDialogueActive || Time.unscaledTime < nextInputTime)
-            return;
 
-        Advance();
-    }
 
     private void Advance()
     {

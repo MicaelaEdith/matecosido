@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         if (animator == null)
-            animator = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<Animator>(true);
 
         if (agent == null)
             agent = GetComponent<NavMeshAgent>();
@@ -157,6 +157,11 @@ public class EnemyController : MonoBehaviour
             StopMoving();
             UpdateAnimator(false);
         }
+    }
+
+    public void SetIgnoreCompanyArea(bool ignore)
+    {
+        requirePlayerInsideCompany = !ignore;
     }
 
     public void SetCompanyArea(CompanyAreaController area)
@@ -300,7 +305,13 @@ public class EnemyController : MonoBehaviour
     private void UpdateAnimator(bool moving)
     {
         if (animator == null)
+            animator = GetComponentInChildren<Animator>(true);
+
+        if (animator == null)
             return;
+
+        if (!animator.enabled)
+            animator.enabled = true;
 
         animator.SetBool(IsMovingParameter, moving);
         animator.SetBool(IsRunningParameter, false);

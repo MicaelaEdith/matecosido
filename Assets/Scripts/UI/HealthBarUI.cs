@@ -27,19 +27,22 @@ public class HealthBarUI : MonoBehaviour
             healthGradient = CreateDefaultGradient();
 
         ConfigureImages();
-        UpdateLivesText();
+        ResolveHealth();
+        SyncFromHealth();
     }
 
     private void OnEnable()
     {
         ResolveHealth();
         Subscribe();
+        SyncFromHealth();
     }
 
     private void Start()
     {
         ResolveHealth();
         Subscribe();
+        SyncFromHealth();
     }
 
     private void OnDisable()
@@ -87,12 +90,7 @@ public class HealthBarUI : MonoBehaviour
         playerHealth.LivesChanged += HandleLivesChanged;
         subscribed = true;
 
-        targetValue = playerHealth.MaxHealth > 0f
-            ? Mathf.Clamp01(playerHealth.CurrentHealth / playerHealth.MaxHealth)
-            : 0f;
-        displayedValue = targetValue;
-        ApplyValue(displayedValue);
-        UpdateLivesText();
+        SyncFromHealth();
     }
 
     private void Unsubscribe()
@@ -103,6 +101,19 @@ public class HealthBarUI : MonoBehaviour
         playerHealth.HealthChanged -= HandleHealthChanged;
         playerHealth.LivesChanged -= HandleLivesChanged;
         subscribed = false;
+    }
+
+    private void SyncFromHealth()
+    {
+        if (playerHealth == null)
+            return;
+
+        targetValue = playerHealth.MaxHealth > 0f
+            ? Mathf.Clamp01(playerHealth.CurrentHealth / playerHealth.MaxHealth)
+            : 0f;
+        displayedValue = targetValue;
+        ApplyValue(displayedValue);
+        UpdateLivesText();
     }
 
     private void ApplyValue(float value)
@@ -119,7 +130,16 @@ public class HealthBarUI : MonoBehaviour
         if (livesText == null)
             return;
 
-        int lives = playerHealth != null ? playerHealth.CurrentLives : 0;
+        if (playerHealth == null)
+            ResolveHealth();
+
+        if (playerHealth == null)
+            return;
+
+        int lives = playerHealth.CurrentLives;
+        if (lives <= 0 && playerHealth.MaxLives > 0 && !playerHealth.IsDead && playerHealth.CurrentHealth > 0f)
+            lives = playerHealth.MaxLives;
+
         livesText.text = "x " + lives;
     }
 
